@@ -19,7 +19,7 @@ const HomePage = () => {
     formData.append("caption", caption)
 
     try {
-      await axios.post('http://localhost:3000/posts', formData);
+      await axios.post('http://localhost:3000/api/posts', formData);
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);

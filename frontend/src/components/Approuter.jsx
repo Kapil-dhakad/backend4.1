@@ -12,14 +12,15 @@ const Approuter = () => {
             <div className="flex-shrink-0 text-white font-bold text-xl">My Gallery</div>
             <div className="flex space-x-4">
               <a href="/" className="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-purple-900 transition">Home</a>
-              <a href="/post" className="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-purple-900 transition">Posts</a>
+              <a href="/posts" className="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-purple-900 transition">Posts</a>
             </div>
           </div>
         </div>
       </nav>
       <Routes>
         <Route path='/' element={<HomePage/>} />
-        <Route path='/post' element={<PostPage/>} />
+        <Route path='/posts' element={<PostPage/>} />
+
       </Routes>
     </div>
   )

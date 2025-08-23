@@ -3,47 +3,57 @@ const multer = require('multer')
 const uploadFile = require('./services/storage.services')
 const postModel = require('./models/post.model')
 const cors = require('cors')
+const path = require('path')
 
 
-const upload = multer({storage: multer.memoryStorage()})
+const upload = multer({ storage: multer.memoryStorage() })
 
 const app = express()
 app.use(cors())
-
 app.use(express.json())
 
-app.post('/posts', upload.single('img'),async(req, res)=> {
-     const caption = req.body.caption
-     const file = req.file.buffer
+app.use(express.static('public'))
 
-     const result = await uploadFile(file, "test")
+app.post('/api/posts', upload.single('img'), async (req, res) => {
+    const caption = req.body.caption
+    const file = req.file.buffer
+
+    const result = await uploadFile(file, "test")
 
     //  console.log(result)
-    
-     const post =  await postModel.create({
+
+    const post = await postModel.create({
         caption: caption,
         url: result.url
-        
-        
+
+
     })
+    console.log(post);
+
     res.json({
-        message : "post created succesfully",
+        message: "post created succesfully",
         post
     })
 
 
 
 })
+app.get('/api/posts', async (req, res) => {
+    console.log("frontend get");
 
-app.get('/posts', async(req, res)=> {
     const post = await postModel.find();
-    
+
     res.json({
         message: "post read successfully",
         post
     })
-    
-    
+
+
 })
+app.get("*name", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "public/index.html"))
+})
+
+
 
 module.exports = app;

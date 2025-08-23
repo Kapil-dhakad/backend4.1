@@ -7,10 +7,9 @@ const PostPage = () => {
     const [posts, setPosts] = useState([])
 
     const fetchData = async() => {
-       await axios.get('http://localhost:3000/posts')
+       await axios.get('http://localhost:3000/api/posts')
         .then((res)=> {
            setPosts(res.data.post)
-
         }).catch((err) =>  console.log(err)
         )
     }
