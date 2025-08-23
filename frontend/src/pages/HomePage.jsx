@@ -22,7 +22,7 @@ const HomePage = () => {
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
-        navigate('/post');
+        navigate('/posts');
       }, 1200);
     } catch (err) {
       console.log(err);
