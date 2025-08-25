@@ -18,7 +18,7 @@ const HomePage = () => {
     formData.append("img", file);
     formData.append("caption", caption);
     try {
-      await axios.post('http://localhost:3000/api/posts', formData);
+      await axios.post('https://sharingphoto.onrender.com/api/posts', formData);
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
